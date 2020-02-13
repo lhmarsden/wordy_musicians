@@ -116,11 +116,9 @@ for a in ['artist_1', 'artist_2']:
     print('\nCreating a list of songs by ' + artists[a]['name'])
     artists[a]['songs'] = []
     artists[a]['unique_songs'] = []
-    #album_count = 0
     
     for i in artists[a]['album_uris']:
         artists[a]['songs'] = artists[a]['songs'] + albumSongs(i)
-        #album_count+=1 # Updates album count once all tracks have been added
         
     for i in artists[a]['songs']:
         artists[a]['unique_songs'].append(titleOnly(i))
@@ -132,7 +130,7 @@ for a in ['artist_1', 'artist_2']:
     print('\nCalculating number of words in each song')
     for i in artists[a]['unique_songs']:
         print('\nSong title: ' + i)
-        try:
+        try: # Checking whether song can be found in API, if not, giving NAN for number of words for that song
             num_words = words_in_song(i,artists[a]['name'])
             artists[a]['num_words'].append(num_words)
             print('Number of words: ' + str(num_words))
